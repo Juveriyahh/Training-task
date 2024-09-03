@@ -1,0 +1,25 @@
+create table students( student_id int primary key,name varchar(20),age int,major varchar(20),gpa decimal(10,2),en
+rollment_date date);
+
+INSERT INTO Students (student_id, name, age, major, gpa,
+     enrollment_date)
+     VALUES
+     (101, 'Alice Johnson', 20, 'Computer Science', 3.8, '2023-01-15'),
+     (102, 'Bob Smith', 22, 'Mathematics', 3.4, '2023-03-22'),
+     (103, 'Carol Lee', 19, 'Biology', 3.2, '2023-04-10'),
+     (104, 'David Brown', 21, 'Physics', 2.9, '2022-11-05'),
+     (105, 'Eve Davis', 23, 'Computer Science', 3.6, '2022-08-20'),
+     (106, 'Frank Miller', 20, 'Mathematics', 3.1, '2023-02-28');
+
+Select * from Students where major='Computer Science';
+Select * from Students where gpa>3.5 OR major ='Mathematics';
+Select * from Students where age>20 AND gpa<3;
+Select * from Students where enrollment_date between '2023-01-01' AND '2023-12-31';
+Select distinct major from Students;
+Select * from Students where student_id in (101,102,103);
+Select * from Students where gpa = null;
+Select * from Students where name is not null;
+Select * from Students where age=18 OR age=22;
+Select * from Students where age<19 OR gpa>3.8;
+Select * from Students where major between 2.5 and 3.5 and major='Biology';
+Select * from Students order by name asc, gpa desc
