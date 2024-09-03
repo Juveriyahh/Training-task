@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" onsubmit="display(event)" novalidate>
+        <input type="email" placeholder="email" id="email">
+        <span id="emailerror"></span><br>
+        <input type="password" placeholder="password" id="password">
+        <span id="passworderror"></span><br>
+        <button type="submit">submit</button>
+    </form>
+    <script>
+        function display(event){
+            const regexemail = /^[^@]+@[^@]+\.[^@]+$/;
+            const regexpassword=/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/;
+
+            event.preventDefault();
+            const email=document.querySelector("#email").value;
+            const password=document.querySelector("#password").value;
+            if(email==""){
+                const emailerror=document.getElementById("emailerror");
+                emailerror.textContent="All fields are mandatory"
+            }else if(!regexemail.test(email)){
+                emailerror.textContent='Email is not valid';
+            }
+            else{
+                emailerror.textContent='';
+                emailerror.style.display='inline';
+            }
+            emailerror.style.color='red';
+            emailerror.style.display='block';
+            if(password==""){
+                const passworderror=document.getElementById("passworderror");
+                passworderror.textContent='All fields are mandatory';
+            }else if(!regexpassword.test(password)){
+                passworderror.textContent='Password is not valid';
+            }
+            else{
+                passworderror.textContent='';
+                passworderror.style.display='inline';
+            }
+            passworderror.style.color='red';
+            passworderror.style.display='block';
+        }
+    </script>
+</body>
+</html>

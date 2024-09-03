@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="digit">Enter 5-digit number:</label><br> <br>
+    <input type="number" class="digit" id="digit"><br> <br>
+    <button id="btn" onclick="printPattern()">Print Pattern</button>
+    <div id="result"></div>
+    <script>
+        function printPattern(){
+            const digit=document.querySelector("#digit").value;
+
+        if(digit.length<5){
+            alert("Please enter a 5-digit no.");
+        }
+        else{
+            for(let i=0;i<=digit.length;i++){
+                let output='';
+                for(let j=digit.length;j>=digit.length + 1-i;j--){
+                    output+=j;
+                }
+                // console.log(output);
+                result+=`<h3>${output}</h3>`;
+            }
+
+
+        }
+        document.getElementById('result').innerHTML=result;
+    }
+    </script>
+</body>
+</html>

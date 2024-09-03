@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1 id="heading"></h1>
+    <p id="message"></p>
+    <button onclick="alert('Shoiw alert')">Button Clicked</button> -->
+    <div class="container">
+        <div class="mb-3">
+            <label for="firstname" class="form-label">FirstName</label>
+            <input type="text" class="form-control" id="firstname" placeholder="first name">
+        </div>
+        <div class="mb-3">
+            <label for="middlename" class="form-label">MiddleName</label>
+            <input type="text" class="form-control" id="middlename" placeholder="middle name">
+        </div>
+        <div class="mb-3">
+            <label for="lastname" class="form-label">LastName</label>
+            <input type="text" class="form-control" id="lastname" placeholder="last name">
+        </div>
+        <button class="btn btn-primary mt-3" onclick="display()">Show</button>
+        <h3 class="text-center p-2 mt-3" id="result"></h3>
+    </div>
+    <script>
+        function display(){
+            const fname= document.querySelector('#firstname');
+            const mname= document.querySelector('#middlename');
+            const lname= document.querySelector('#lastname');
+            const result= document.querySelector('#result');
+            console.log(`Welcome ${fname.value} ${mname.value} ${lname.value}`);
+            
+            result.textContent=`Welcome ${fname.value} ${mname.value} ${lname.value}`
+
+        }
+    
+     
+        // const heading= prompt("Enter the heading:");
+    //     document.getElementById("heading").textContent=heading;
+    //     const message= prompt("Enter the para:");
+    //     document.getElementById("message").textContent=message;
+    //     document.getElementById("heading").style.color="red";
+    //     document.getElementById("message").style.color="pink";
+    // </script>
+</body>
+</html>
