@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Registeration Form</h1><br>
+    <form>
+        <div>
+            <label for="name">Full Name</label>
+            <input type="text" placeholder="Juveriyah" id="name">
+        </div>
+        <div>
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob">
+        </div>
+        <div>
+            <label for="profile">Profile Picture</label>
+            <input type="file" id="profile">
+        </div>
+        <div>
+            <label for="gender">Gender</label>
+            <input type="radio" id="gender" value="male" name="gender">Male
+            <input type="radio" id="gender" value="female" name="gender">Female
+            <input type="radio" id="gender" value="others" name="gender">Others
+        </div>
+        <div>
+            <label for="lang">Languages Known</label>
+            <input type="checkbox" id="check1" value="Hindi">Hindi
+            <input type="checkbox" id="check2" value="English">English
+            <input type="checkbox" id="check3" value="Urdu">Hindi
+        </div>
+        <div>
+            <label for="password"></label>
+            <input type="password" id="password" placeholder="SECRET">
+        </div>
+        <div>
+            <label for="favcolour">Favourite Colour</label>
+            <input type="color" id="favcolour" value="#ff0000">
+        </div>
+        <div>
+            <label for="age">Age</label>
+            <input type="number" id="age" min="18" max="60" value="18">
+        </div>
+        <div>
+            <label for="percent">Percentage</label>
+            <input type="range" id="percent" min="0" max="100" value="50">
+        </div>
+        <div>
+            <input type="button" value="Register">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+</body>
+</html>
