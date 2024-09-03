@@ -1,0 +1,106 @@
+create table students(
+    -> student_id int primary key,
+    -> name varchar(20),
+    -> age int,
+    -> major varchar(100),
+    -> gpa decimal(10,2),
+    -> enrollment_date date);
+INSERT INTO Students (student_id, name, age, major, gpa,
+    -> enrollment_date)
+    -> VALUES
+    -> (101, 'Alice Johnson', 20, 'Computer Science', 3.8, '2023-01-15'),
+    -> (102, 'Bob Smith', 22, 'Mathematics', 3.4, '2023-03-22'),
+    -> (103, 'Carol Lee', 19, 'Biology', 3.2, '2023-04-10'),
+    -> (104, 'David Brown', 21, 'Physics', 2.9, '2022-11-05'),
+    -> (105, 'Eve Davis', 23, 'Computer Science', 3.6, '2022-08-20'),
+    -> (106, 'Frank Miller', 20, 'Mathematics', 3.1, '2023-02-28');
+ create table courses(
+    -> course_id int primary key,
+    -> course_name varchar(100),
+    -> credits int);
+ INSERT INTO Courses (course_id,
+    -> course_name, credits)
+    -> VALUES
+    -> (201, 'Introduction to Programming', 3),
+    -> (202, 'Calculus I', 4),
+    -> (203, 'Biology 101', 3),
+    -> (204, 'Physics Fundamentals', 4),
+    -> (205, 'Data Structures', 3),
+    -> (206, 'Advanced Mathematics', 3);
+create table enrollments(
+    enrollment_id int primary key,
+    student_id int,
+    course_id int,
+    enrollment_date date,
+    foreign key (student_id) references students(student_id),
+    foreign key (course_id) references courses(course_id));
+INSERT INTO enrollments (enrollment_id, 
+student_id, course_id, enrollment_date)
+VALUES 
+(301, 101, 201, '2023-01-20'),
+(302, 102, 202, '2023-03-25'),
+(303, 103, 203, '2023-04-15'),
+(304, 104, 204, '2022-11-10'),
+(305, 105, 205, '2022-08-25'),
+(306, 106, 202, '2023-03-01');
+
+SELECT s.name AS student_name, c.course_name
+FROM students s
+JOIN enrollments e ON s.student_id = e.student_id
+JOIN courses c ON e.course_id = c.course_id;
+
+
+SELECT c.course_name, COUNT(e.student_id) AS number_of_students
+FROM courses c
+JOIN enrollments e ON c.course_id = e.course_id
+GROUP BY c.course_name;
+
+SELECT c.course_name, COUNT(e.student_id) AS number_of_students
+    -> FROM courses c
+    -> LEFT JOIN enrollments e ON c.course_id = e.course_id
+    -> GROUP BY c.course_name having number_of_students>2;
+
+ alter table enrollments add column grade int;
+
+ update enrollments set grade=70 where enrollment_id in(301,304,306);
+
+select name,(select max(grade) from enrollments where enrollments.student_id=students.student_id) as HighestGrade
+ from students;
+
+insert into enrollments values(307,104,202,'2023-01-05',95);
+
+select name,(select max(grade) from enrollments where enrollments.student_id=students.student_id) as HighestGrade from students;
+
+ select course_name,AvgGrade from(select course_id,avg(grade) as AvgGrade from enrollments group by course_id) as
+CourseAverages join courses on courses.course_id=CourseAverages.course_id;
+
+select name from students where student_id in(select student_id from enrollments where course_id=206);
+
+BEGIN TRANSACTION;
+UPDATE Accounts SET balance = balance - 100 WHERE account_id = 'A001';
+SAVEPOINT sp1;
+UPDATE Accounts SET balance = balance + 100 WHERE account_id = 'A002';
+
+
+
+
+DELIMITER //
+CREATE FUNCTION GetBalance(account_id
+VARCHAR(10))
+RETURNS DECIMAL(10, 2)
+DETERMINISTIC
+BEGIN
+ DECLARE account_balance DECIMAL(10, 
+2);
+ 
+UPDATE
+
+ SELECT balance INTO account_balance
+ FROM Accounts
+ WHERE account_id = account_id;
+ 
+ RETURN account_balance;
+END //
+DELIMITER ;
+
+
